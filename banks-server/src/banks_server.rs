@@ -195,7 +195,7 @@ fn simulate_transaction(
         units_consumed,
         return_data,
         inner_instructions,
-    } = bank.simulate_transaction_unchecked(&sanitized_transaction, false);
+    } = bank.simulate_transaction_unchecked(&sanitized_transaction, true);
 
     let simulation_details = TransactionSimulationDetails {
         logs,
@@ -379,6 +379,7 @@ impl Banks for BanksServer {
                         compute_units_consumed: details.executed_units,
                         log_messages: details.log_messages.unwrap_or_default(),
                         return_data: details.return_data,
+                        inner_instructions: details.inner_instructions,
                     }),
                 }
             }
